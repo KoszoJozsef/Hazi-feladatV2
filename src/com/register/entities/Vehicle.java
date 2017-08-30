@@ -61,8 +61,8 @@ public class Vehicle implements Serializable {
 	public String getVIN() {
 		return VIN;
 	}
-	public void setVIN(String vIN) {
-		VIN = vIN;
+	public void setVIN(String VIN) {
+		this.VIN = VIN;
 	}
 	public String getComment() {
 		return comment;

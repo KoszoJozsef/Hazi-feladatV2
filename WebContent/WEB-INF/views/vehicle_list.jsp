@@ -25,6 +25,7 @@
 			<th>SeatHeating</th>
 			<th>Airbags</th>
 			<th>OverTurningSystem</th>
+			<th>User</th>
 		
 		</tr>
 		
@@ -43,9 +44,12 @@
 			<td><%= vList.get(i).getTypeDesignation() %></td>
 			<td><%= vList.get(i).getVIN() %></td>
 			<td><%= vList.get(i).getComment() %></td>
-			<td><%= vList.get(i).isSeatHeating() %></td>
+			<td><%= vList.get(i).isSeatHeating() %>
 			<td><%= vList.get(i).isAirbags() %></td>
 			<td><%= vList.get(i).isOverturningSystem() %></td>
+			
+			<td><%= vList.get(i).getUser().getFirstname() %></td>
+			<td><%= vList.get(i).getUser().getLastname() %></td>
 		
 		</tr>
 		

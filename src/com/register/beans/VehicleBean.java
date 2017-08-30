@@ -78,7 +78,6 @@ public class VehicleBean {
     	
     	em.merge(vUpdated);
     	
-    	
     	return vUpdated;
     }
 

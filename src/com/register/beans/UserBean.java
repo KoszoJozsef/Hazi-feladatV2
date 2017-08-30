@@ -29,5 +29,20 @@ public class UserBean {
     	em.persist(u);
     	
     }
+    
+    public User updateUser(int userId, User uUpdated){
+    	
+    	uUpdated.setId(userId);
+    	
+    	User uCheckExist = em.find(User.class, userId);
+    	
+    	if(uCheckExist == null){
+    		return null;
+    	}
+    	
+    	em.merge(uUpdated);
+    	
+    	return uUpdated;
+    }
 
 }

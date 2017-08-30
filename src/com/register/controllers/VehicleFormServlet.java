@@ -29,7 +29,7 @@ public class VehicleFormServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/vehicle_form");
+		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/vehicle_form.jsp");
 		
 		view.forward(request, response);
 		

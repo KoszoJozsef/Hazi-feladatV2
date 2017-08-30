@@ -7,6 +7,32 @@
 </head>
 <body>
 
+	<%
+		if(request.getAttribute("errors") != null){
+			
+	%>
+	
+		<fieldset>
+			<legend>Errors:</legend>
+			<ul>
+				<% if(request.getAttribute("brand-error") != null) { %>
+					<li class="error">Brand error</li>
+				<%}%>
+				<% if(request.getAttribute("model-error") != null) { %>
+					<li class="error">Model error</li>
+				<%}%>
+				<% if(request.getAttribute("typeDesignation-error") != null) { %>
+					<li class="error">Typedesignation error</li>
+				<%}%>
+				<% if(request.getAttribute("VIN-error") != null) { %>
+					<li class="error">Invalid VIN</li>
+				<%}%>
+			</ul>
+		</fieldset>
+	<%
+		}
+	%>
+
 	<form method="POST" action="AddVehicleServlet">
 		
 		Brand:
@@ -35,7 +61,15 @@
 		
 		Comment:
 		
-		<input name="Comment" type="text"></input>
+		<input name="comment" type="text"></input>
+		
+		<br /><br />
+	
+		<input name="extra" type="checkbox" value="seatHeating">SeatHeating
+		
+		<input name="extra" type="checkbox" value="airbags">Airbags
+		
+		<input name="extra" type="checkbox" value="overturningSystem">OverturningSystem
 		
 		<br /><br />
 		
