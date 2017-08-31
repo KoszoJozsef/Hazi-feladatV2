@@ -29,9 +29,37 @@
 				<%}%>
 			</ul>
 		</fieldset>
+		
 	<%
 		}
 	%>
+	
+	<%
+		if(request.getAttribute("user-errors") != null) {
+	%>
+		
+		<fieldset>
+			<legend>Errors:</legend>
+			<ul>
+				<% if(request.getAttribute("username-error") != null) { %>
+					<li class="error">Username error</li>
+				<%}%>
+				<% if(request.getAttribute("password-error") != null) { %>
+					<li class="error">Password error</li>
+				<%}%>
+				<% if(request.getAttribute("firstname-error") != null) { %>
+					<li class="error">Firstname error</li>
+				<%}%>
+				<% if(request.getAttribute("lastname-error") != null) { %>
+					<li class="error">Lastname error</li>
+				<%}%>
+			</ul>
+		</fieldset>
+	<%
+		}
+	%>
+	
+	<h2>Add vehicle</h2>
 
 	<form method="POST" action="AddVehicleServlet">
 		
@@ -76,6 +104,85 @@
 
 		<button type="submit">Add Vehicle</button>
 		
+		<br /><br />
+	</form>
+	
+	<h3>Vehicle List</h3>
+	
+	<form method="GET" action="VehicleListServlet">
+	
+		<button type="submit">Continue</button>
+		
+		<br /><br />
+	
+	</form>
+	
+	<h3>User List</h3>
+	
+	<form method="GET" action="UserListServlet">
+	
+		<button type="submit">Continue</button>
+		
+		<br /><br />
+	
+	</form>
+	
+	<h4>Add user</h4>
+	
+	<form method="POST" action="AddUserServlet">
+		
+		Username: 
+		
+		<input name="username" type="text" ></input>
+		
+		<br /><br />
+		
+		Password: 
+		
+		<input name="password" type="text" ></input>
+		
+		<br /><br />
+		
+		Firstname: 
+		
+		<input name="firstname" type="text" ></input>
+		
+		<br /><br />
+		
+		Lastname: 
+		
+		<input name="lastname" type="text" ></input>
+		
+		<br /><br />
+		
+		Role: 
+		
+		<select name="role">
+			<option value="Admin">Admin</option>
+			<option value="User">User</option>
+		</select>
+		
+		<br /><br />
+		
+		<button type="submit">Add user</button>
+		
+		<br /><br />
+	
+	</form>
+	
+	<form method="POST" action="AddVehicleToUserServlet">
+	
+		Add a vehicle with an id of
+		
+		<input name="vid" type="text"></input>
+		
+		to a user with an id of
+		
+		<input name="uid" type="text"></input>
+		
+		<br /><br />
+		
+		<button type="submit">Add vehicle to user</button>
 	
 	</form>
 

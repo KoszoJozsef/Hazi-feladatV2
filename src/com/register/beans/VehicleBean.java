@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 
+import com.register.entities.ApplicationUser;
 import com.register.entities.Vehicle;
 
 /**
@@ -50,7 +51,7 @@ public class VehicleBean {
     	
     	TypedQuery<Vehicle> query = em.createNamedQuery("Vehicle.findById", Vehicle.class);
     	
-    	query.setParameter("id", vehicleId);
+    	query.setParameter("idVehicle", vehicleId);
     	
     	Vehicle v = null;
     	
@@ -79,6 +80,30 @@ public class VehicleBean {
     	em.merge(vUpdated);
     	
     	return vUpdated;
+    }
+    
+    public void addVehicleToUser(String idVehicle, String idUser) {
+    	
+    	TypedQuery<ApplicationUser> uQuery = em.createNamedQuery("ApplicationUser.findById", ApplicationUser.class);
+    	
+    	uQuery.setParameter("idApplicationUser", idUser);
+    	
+    	ApplicationUser u = uQuery.getSingleResult();
+    	
+    	TypedQuery<Vehicle> vQuery = em.createNamedQuery("Vehicle.findById", Vehicle.class);
+    	
+    	vQuery.setParameter("idVehicle", idVehicle);
+    	
+    	Vehicle v = vQuery.getSingleResult();
+    	
+    	List<Vehicle> vList = u.getVehicles();
+    	
+    	vList.add(v);
+    	
+    	u.setVehicles(vList);
+    	
+    	v.setUserForVehicle(u);
+    	
     }
 
 }

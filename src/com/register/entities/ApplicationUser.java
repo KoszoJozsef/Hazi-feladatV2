@@ -2,6 +2,7 @@ package com.register.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -10,19 +11,19 @@ import javax.persistence.*;
  *
  */
 @Entity
-@NamedQuery(name="User.findById", query="SELECT u FROM User u WHERE u.id = :id")
-public class User implements Serializable {
+@NamedQuery(name="ApplicationUser.findById", query="SELECT u FROM ApplicationUser u WHERE u.idApplicationUser = :idApplicationUser")
+public class ApplicationUser implements Serializable {
 
 	@Transient
 	private static final long serialVersionUID = 1L;
 
-	public User() {
+	public ApplicationUser() {
 		super();
 	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private int idApplicationUser;
 	
 	private String username;
 	private String password;
@@ -35,16 +36,15 @@ public class User implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date lastLogin;
 	
-	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-	@JoinColumn(name="vehicle_fk")
-	private Vehicle vehicleDetails;
+	@OneToMany(mappedBy = "userForVehicle")
+	private List<Vehicle> vehicles;
 
 	public int getId() {
-		return id;
+		return idApplicationUser;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.idApplicationUser = id;
 	}
 
 	public String getUsername() {
@@ -95,12 +95,12 @@ public class User implements Serializable {
 		this.lastLogin = lastLogin;
 	}
 
-	public Vehicle getVehicleDetails() {
-		return vehicleDetails;
+	public List<Vehicle> getVehicles() {
+		return vehicles;
 	}
 
-	public void setVehicleDetails(Vehicle vehicleDetails) {
-		this.vehicleDetails = vehicleDetails;
+	public void setVehicles(List<Vehicle> vehicles) {
+		this.vehicles = vehicles;
 	}
 	
    

@@ -11,7 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 import com.register.beans.UserBean;
-import com.register.entities.User;
+import com.register.entities.ApplicationUser;
 
 
 @Path("/users")
@@ -31,7 +31,7 @@ public class UserWebService {
 	@PUT
 	@Consumes("application/json")
 	@Path("/edit/{uId}")
-	public Response updateUser(@PathParam("uId") int userId, User uUpdated){
+	public Response updateUser(@PathParam("uId") int userId, ApplicationUser uUpdated){
 		
 		uUpdated = ub.updateUser(userId, uUpdated);
 		

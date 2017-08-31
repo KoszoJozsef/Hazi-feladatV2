@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.register.beans.VehicleBean;
+import com.register.entities.Role;
+import com.register.entities.ApplicationUser;
 import com.register.entities.Vehicle;
 
 /**
@@ -125,6 +127,7 @@ public class AddVehicleServlet extends HttpServlet {
 				}
 			}
 		}
+		
 
 		if ((Boolean) request.getAttribute("errors")) {
 
@@ -135,7 +138,6 @@ public class AddVehicleServlet extends HttpServlet {
 		}
 		else {
 
-			//javax.ejb.EJBException: Transaction aborted
 			vb.addVehicle(v);
 	
 			response.sendRedirect("VehicleListServlet");

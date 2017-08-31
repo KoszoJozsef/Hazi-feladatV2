@@ -8,7 +8,7 @@ import javax.persistence.*;
  *
  */
 @Entity
-@NamedQuery(name="Vehicle.findById", query="SELECT v FROM Vehicle v WHERE v.id = :id")
+@NamedQuery(name="Vehicle.findById", query="SELECT v FROM Vehicle v WHERE v.idVehicle = :idVehicle")
 public class Vehicle implements Serializable {
 
 	@Transient
@@ -20,7 +20,7 @@ public class Vehicle implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private int idVehicle;
 	
 	private String brand;
 	private String model;
@@ -31,14 +31,15 @@ public class Vehicle implements Serializable {
 	private boolean airbags;
 	private boolean overturningSystem;
 	
-	@OneToOne(mappedBy = "vehicleDetails")
-	private User user;
+	@ManyToOne
+	@JoinColumn(name = "user_fk")
+	private ApplicationUser userForVehicle;
 
 	public int getId() {
-		return id;
+		return idVehicle;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int idVehicle) {
+		this.idVehicle = idVehicle;
 	}
 	public String getBrand() {
 		return brand;
@@ -88,13 +89,11 @@ public class Vehicle implements Serializable {
 	public void setOverturningSystem(boolean overturningSystem) {
 		this.overturningSystem = overturningSystem;
 	}
-	public User getUser() {
-		return user;
+	public ApplicationUser getUserForVehicle() {
+		return userForVehicle;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserForVehicle(ApplicationUser userForVehicle) {
+		this.userForVehicle = userForVehicle;
 	}
-	
-	
    
 }

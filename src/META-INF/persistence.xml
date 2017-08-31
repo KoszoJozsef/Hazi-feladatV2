@@ -3,7 +3,7 @@
 	<persistence-unit name="register">
 	<jta-data-source>jdbc/register</jta-data-source>
 	<class>com.register.entities.Vehicle</class>
-	<class>com.register.entities.User</class>
+	<class>com.register.entities.ApplicationUser</class>
 	<properties>
 		<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
 	</properties>

@@ -2,24 +2,30 @@ package com.register.controllers;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.register.beans.UserBean;
+import com.register.beans.VehicleBean;
+
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class AddVehicleToUserServlet
  */
-@WebServlet("")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/AddVehicleToUserServlet")
+public class AddVehicleToUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	@EJB
+	VehicleBean vb;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public AddVehicleToUserServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,12 +34,9 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		
 		
-		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/login.jsp");
-		
-		view.forward(request, response);
-				
 	}
 
 	/**
@@ -41,6 +44,11 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		String vid = request.getParameter("vid");
+		String uid = request.getParameter("uid");
+		
+		vb.addVehicleToUser(vid, uid);
+	
 	}
 
 }

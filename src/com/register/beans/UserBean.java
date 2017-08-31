@@ -1,11 +1,14 @@
 package com.register.beans;
 
+import java.util.List;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
-import com.register.entities.User;
+import com.register.entities.ApplicationUser;
 
 /**
  * Session Bean implementation class UserBean
@@ -24,17 +27,26 @@ public class UserBean {
     @PersistenceContext(unitName="register")
     private EntityManager em;
     
-    public void addUser(User u) {
+    public void addUser(ApplicationUser u) {
     	
     	em.persist(u);
     	
     }
     
-    public User updateUser(int userId, User uUpdated){
+    public List<ApplicationUser> getUsers() {
+    	
+    	TypedQuery<ApplicationUser> query = em.createQuery("SELECT u FROM ApplicationUser u" , ApplicationUser.class);
+    	
+    	List<ApplicationUser> results = query.getResultList();
+    	
+    	return results;
+    }
+    
+    public ApplicationUser updateUser(int userId, ApplicationUser uUpdated){
     	
     	uUpdated.setId(userId);
     	
-    	User uCheckExist = em.find(User.class, userId);
+    	ApplicationUser uCheckExist = em.find(ApplicationUser.class, userId);
     	
     	if(uCheckExist == null){
     		return null;
