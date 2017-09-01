@@ -2,30 +2,24 @@ package com.register.controllers;
 
 import java.io.IOException;
 
-import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.register.beans.UserBean;
-import com.register.beans.VehicleBean;
-
 /**
- * Servlet implementation class AddVehicleToUserServlet
+ * Servlet implementation class EditUserServlet
  */
-@WebServlet("/AddVehicleToUserServlet")
-public class AddVehicleToUserServlet extends HttpServlet {
+@WebServlet("/EditUserServlet")
+public class EditUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	@EJB
-	UserBean ub;
-	
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddVehicleToUserServlet() {
+    public EditUserServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,20 +29,17 @@ public class AddVehicleToUserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/edit_user.jsp");
 		
-		
+		view.forward(request, response);
+	
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		String vid = request.getParameter("vid");
-		String uid = request.getParameter("uid");
-		
-		ub.addVehicleToUser(vid, uid);
-	
+		// TODO Auto-generated method stub
 	}
 
 }

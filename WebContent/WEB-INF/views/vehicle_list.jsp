@@ -42,7 +42,7 @@
 		<tr>
 		
 			<td align="center"><%= vList.get(i).getId() %></td>
-			<td align="center"><%= vList.get(i).getBrand() %></td>
+			<td align="center"><div contenteditable><%= vList.get(i).getBrand() %></td>
 			<td align="center"><%= vList.get(i).getModel() %></td>
 			<td align="center"><%= vList.get(i).getTypeDesignation() %></td>
 			<td align="center"><%= vList.get(i).getVIN() %></td>
@@ -55,24 +55,22 @@
 				<%
 					if(vList.get(i).getUserForVehicle() != null){
 								
-								List<ApplicationUser> uList = (List<ApplicationUser>) vList.get(i).getUserForVehicle();
+								ApplicationUser u =  vList.get(i).getUserForVehicle();
 								
-								for(int j = 0; j < uList.size(); j++){
 				%>
 					<%=
-						uList.get(j).getFirstname() + " " + uList.get(j).getLastname() + "<br />"
+						u.getFirstname() + " " + u.getLastname() + "<br />"
 					%>
 				<%
 				
-						}
 					}
 				
 				%>
 				
 			</td>
 			
-			<td><button type="submit">Edit</button></td>
-			<td><button type="submit">Delete</button></td>
+			<td><button type="submit" onClick="location='EditVehicleServlet'">Edit</button></td>
+			<td><button type="submit" onClick="location='DeleteVehicleServlet'">Delete</button></td>
 			
 		
 		</tr>

@@ -101,6 +101,12 @@
 		
 		<br /><br />
 		
+		User ID:
+		
+		<input name="idUser" type="text"></input>
+		
+		<br /><br />
+		
 
 		<button type="submit">Add Vehicle</button>
 		
@@ -170,21 +176,6 @@
 	
 	</form>
 	
-	<form method="POST" action="AddVehicleToUserServlet">
-	
-		Add a vehicle with an id of
-		
-		<input name="vid" type="text"></input>
-		
-		to a user with an id of
-		
-		<input name="uid" type="text"></input>
-		
-		<br /><br />
-		
-		<button type="submit">Add vehicle to user</button>
-	
-	</form>
 
 </body>
 </html>

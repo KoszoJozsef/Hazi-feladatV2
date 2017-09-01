@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import com.register.entities.ApplicationUser;
+import com.register.entities.Vehicle;
 
 /**
  * Session Bean implementation class UserBean
@@ -40,6 +41,30 @@ public class UserBean {
     	List<ApplicationUser> results = query.getResultList();
     	
     	return results;
+    }
+    
+    public void addVehicleToUser(String idVehicle, String idUser) {
+    	
+    	TypedQuery<ApplicationUser> uQuery = em.createNamedQuery("ApplicationUser.findById", ApplicationUser.class);
+    	
+    	uQuery.setParameter("idApplicationUser", Integer.parseInt(idUser));
+    	
+    	ApplicationUser u = uQuery.getSingleResult();
+    	
+    	TypedQuery<Vehicle> vQuery = em.createNamedQuery("Vehicle.findById", Vehicle.class);
+    	
+    	vQuery.setParameter("idVehicle", idVehicle);
+    	
+    	Vehicle v = vQuery.getSingleResult();
+    	
+    	List<Vehicle> vList = u.getVehicles();
+    	
+    	vList.add(v);
+    	
+    	u.setVehicles(vList);
+    	
+    	v.setUserForVehicle(u);
+    	
     }
     
     public ApplicationUser updateUser(int userId, ApplicationUser uUpdated){

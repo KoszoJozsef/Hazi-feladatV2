@@ -1,31 +1,23 @@
 package com.register.controllers;
 
 import java.io.IOException;
-
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.register.beans.UserBean;
-import com.register.beans.VehicleBean;
-
 /**
- * Servlet implementation class AddVehicleToUserServlet
+ * Servlet implementation class DeleteVehicleServlet
  */
-@WebServlet("/AddVehicleToUserServlet")
-public class AddVehicleToUserServlet extends HttpServlet {
+@WebServlet("/DeleteVehicleServlet")
+public class DeleteVehicleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	@EJB
-	UserBean ub;
-	
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddVehicleToUserServlet() {
+    public DeleteVehicleServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,18 +29,15 @@ public class AddVehicleToUserServlet extends HttpServlet {
 
 		
 		
+		response.sendRedirect("VehicleListServlet");
+	
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		String vid = request.getParameter("vid");
-		String uid = request.getParameter("uid");
-		
-		ub.addVehicleToUser(vid, uid);
-	
+		// TODO Auto-generated method stub
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.register.controllers;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,50 +12,52 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.register.beans.VehicleBean;
-import com.register.entities.Role;
-import com.register.entities.ApplicationUser;
 import com.register.entities.Vehicle;
 
 /**
- * Servlet implementation class AddVehicle
+ * Servlet implementation class EditVehicleServlet
  */
-@WebServlet("/AddVehicleServlet")
-public class AddVehicleServlet extends HttpServlet {
+@WebServlet("/EditVehicleServlet")
+public class EditVehicleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
 	@EJB
 	VehicleBean vb;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public EditVehicleServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public AddVehicleServlet() {
-		super();
-		// TODO Auto-generated constructor stub
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/edit_vehicle.jsp");
+		
+		view.forward(request, response);
+	
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setAttribute("errors", false);
 
-		Vehicle v = new Vehicle();
+		
+		/*
+
+		Vehicle v = vb.getVehicle(Integer.parseInt(request.getParameter("")));
+		
+		*/
 
 		String brand = request.getParameter("brand");
 
@@ -147,6 +150,8 @@ public class AddVehicleServlet extends HttpServlet {
 			
 		}
 
+		response.sendRedirect("VehicleListServlet");
+	
 	}
 
 }

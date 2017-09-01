@@ -34,7 +34,7 @@
 			<td align="center"><%= uList.get(i).getLastname() %></td>
 			<td align="center"><%= uList.get(i).getRole() %></td>
 			
-			<td><button type="submit">Edit</button></td>
+			<td><button type="submit" onClick="location='EditVehicleServlet'">Edit</button></td>
 			
 		
 		</tr>
